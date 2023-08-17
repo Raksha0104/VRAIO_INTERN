@@ -5,22 +5,9 @@ body {
 }
 
 .jumbotron {
-    background-color: #f8f9fa;
+    background-color: #f8f8f8;
     text-align: center;
     padding: 2rem 0;
-}
-
-.album {
-    padding-top: 2.5rem;
-    padding-bottom: 2.5rem;
-    background-color: #f8f9fa;
-}
-
-.grid-container {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.5rem;
-    margin: 50px;
 }
 
 .card {
@@ -52,12 +39,7 @@ body {
 }
 
 .btn-primary {
-    background-color: #007bff;
-    color: white;
-}
-
-.btn-secondary {
-    background-color: #6c757d;
+    background-color: #f43eae;
     color: white;
 }
 
@@ -78,8 +60,7 @@ body {
 }
 
 footer {
-    padding: 1rem 0;
-    background-color: #f8f9fa;
+    background-color: #f8f8f8;
     text-align: center;
 }
 
@@ -94,6 +75,22 @@ footer {
     .jumbotron {
         padding-top: 6rem;
         padding-bottom: 6rem;
+    }
+
+    .btn {
+        padding: 5px 15px;
+    }
+
+    .card {
+        margin-bottom: 1.5rem;
+    }
+
+    .card-body {
+        padding: 0.75rem;
+    }
+
+    .card-text {
+        margin-top: 0.75rem;
     }
 }
 
