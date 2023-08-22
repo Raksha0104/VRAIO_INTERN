@@ -1,12 +1,12 @@
 document.addEventListener("DOMContentLoaded", function () {
     const studentForm = document.getElementById("student-form");
-    const studentList = document.querySelector(".student-list");
+    // const studentList = document.querySelector(".student-list");
 
     studentForm.addEventListener("submit", function (event) {
         event.preventDefault();
         const nameInput = document.getElementById("name").value;
         const registerNoInput = document.getElementById("registerNo").value;
-        const gradeInput = document.getElementById("grade").value;
+        const gradeInput = document.getElementById("grade").value
 
         if(nameInput && registerNoInput && gradeInput){
             addStudent(nameInput,registerNoInput,gradeInput);
@@ -95,18 +95,61 @@ document.addEventListener("DOMContentLoaded", function () {
         sortTable();
     }
 
-    function sortTable() {
+    // function sortTable() {
+    //     const rows = Array.from(studentList.getElementsByTagName("tr"));
+    //     rows.shift();
+
+    //     rows.sort((a, b) => {
+    //         const nameA = a.cells[0].textContent.trim().toLowerCase();
+    //         const nameB = b.cells[0].textContent.trim().toLowerCase();
+    //         return nameA.localeCompare(nameB);
+    //     });
+
+    //     for (const row of rows) {
+    //         studentList.appendChild(row);
+    //     }
+    // }
+
+    const tableHeaders = document.querySelectorAll(".table th");
+    const studentList = document.querySelector(".student-list");
+    let sortColumn = null;
+    let sortOrder = "asc";
+
+    tableHeaders.forEach((header, index) => {
+        header.addEventListener("click", function () {
+            sortTable(index);
+        });
+    });
+
+    function sortTable(columnIndex) {
         const rows = Array.from(studentList.getElementsByTagName("tr"));
-        rows.shift();
 
         rows.sort((a, b) => {
-            const nameA = a.cells[0].textContent.trim().toLowerCase();
-            const nameB = b.cells[0].textContent.trim().toLowerCase();
-            return nameA.localeCompare(nameB);
-        });
+            const valueA = a.getElementsByTagName("td")[columnIndex].textContent.trim();
+            const valueB = b.getElementsByTagName("td")[columnIndex].textContent.trim();
 
-        for (const row of rows) {
-            studentList.appendChild(row);
-        }
+            if (valueA === valueB) return 0;
+            if (sortOrder === "asc") {
+                return valueA.localeCompare(valueB);
+            } else {
+                return valueB.localeCompare(valueA);
+            }
+        });
+        studentList.innerHTML = "";
+        rows.forEach(row => studentList.appendChild(row));
+
+        updateSortIndicator(columnIndex);
+        sortOrder = sortOrder === "asc" ? "desc" : "asc";
+        sortColumn = columnIndex;
+    }
+
+    function updateSortIndicator(columnIndex) {
+        tableHeaders.forEach((header, index) => {
+            if (index === columnIndex) {
+                header.classList.add("sorted");
+            } else {
+                header.classList.remove("sorted");
+            }
+        });
     }
 });
