@@ -8,23 +8,33 @@ document.addEventListener("DOMContentLoaded", function () {
         const registerNoInput = document.getElementById("registerNo").value;
         const gradeInput = document.getElementById("grade").value;
 
-        if(nameInput===""){
-            document.getElementById("errorMessageName").innerHTML ="Enter name";
-            document.getElementById("name").focus();
-        }
-
-        if(registerNoInput.trim()===""){
-            document.getElementById("errorMessageReg").innerHTML ="Enter Register Number";
-            document.getElementById("registerNo").focus();
-        }
-
-        if(gradeInput.trim()===""){
-            document.getElementById("errorMessageGrade").innerHTML ="Enter Grade";
-            document.getElementById("grade").focus();
-        }
-
         if(nameInput && registerNoInput && gradeInput){
             addStudent(nameInput,registerNoInput,gradeInput);
+            document.getElementById("name").classList.remove("is-invalid");
+            document.getElementById("errorMessageName").innerText ="";
+            document.getElementById("registerNo").classList.remove("is-invalid");
+            document.getElementById("errorMessageRegNo").innerText ="";
+            document.getElementById("grade").classList.remove("is-invalid");
+            document.getElementById("errorMessageGrade").innerText ="";
+            
+        }else{
+            if(nameInput===""){
+                document.getElementById("name").classList.add("is-invalid");
+                document.getElementById("errorMessageName").innerText ="Enter name";
+                document.getElementById("errorMessageName").focus();
+            }
+    
+            if(registerNoInput===""){
+                document.getElementById("registerNo").classList.add("is-invalid");
+                document.getElementById("errorMessageRegNo").innerText ="Enter name";
+                document.getElementById("errorMessageRegNo").focus();
+            }
+    
+            if(gradeInput===""){
+                document.getElementById("grade").classList.add("is-invalid");
+                document.getElementById("errorMessageGrade").innerText ="Enter Grade";
+                document.getElementById("errorMessageGrade").focus();
+            }
         }
         });
 
@@ -37,6 +47,10 @@ document.addEventListener("DOMContentLoaded", function () {
         nameInput.value = "";
         registerNoInput.value = "";
         gradeInput.value = "";
+
+        document.getElementById("errorMessageName").innerHTML = "";
+        document.getElementById("errorMessageRegNo").innerHTML = "";
+        document.getElementById("errorMessageGrade").innerHTML = "";
 
     });
 
