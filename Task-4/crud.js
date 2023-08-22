@@ -4,20 +4,40 @@ document.addEventListener("DOMContentLoaded", function () {
 
     studentForm.addEventListener("submit", function (event) {
         event.preventDefault();
+        const nameInput = document.getElementById("name").value;
+        const registerNoInput = document.getElementById("registerNo").value;
+        const gradeInput = document.getElementById("grade").value;
+
+        if(nameInput===""){
+            document.getElementById("errorMessageName").innerHTML ="Enter name";
+            document.getElementById("name").focus();
+        }
+
+        if(registerNoInput.trim()===""){
+            document.getElementById("errorMessageReg").innerHTML ="Enter Register Number";
+            document.getElementById("registerNo").focus();
+        }
+
+        if(gradeInput.trim()===""){
+            document.getElementById("errorMessageGrade").innerHTML ="Enter Grade";
+            document.getElementById("grade").focus();
+        }
+
+        if(nameInput && registerNoInput && gradeInput){
+            addStudent(nameInput,registerNoInput,gradeInput);
+        }
+        });
+
+    studentForm.addEventListener("reset", function (event){
+        event.preventDefault();
         const nameInput = document.getElementById("name");
         const registerNoInput = document.getElementById("registerNo");
         const gradeInput = document.getElementById("grade");
 
-        const name = nameInput.value;
-        const registerNo = registerNoInput.value;
-        const grade = gradeInput.value;
+        nameInput.value = "";
+        registerNoInput.value = "";
+        gradeInput.value = "";
 
-        if (name && registerNo && grade) {
-            addStudent(name, registerNo, grade);
-            // nameInput.value = "";
-            // registerNoInput.value = "";
-            // gradeInput.value = "";
-        }
     });
 
     function addStudent(name, registerNo, grade) {
@@ -40,12 +60,19 @@ document.addEventListener("DOMContentLoaded", function () {
 
         const editButton = row.querySelector(".edit");
         editButton.addEventListener("click", function () {
-            // Set form values with row data for editing
             document.getElementById("name").value = name;
             document.getElementById("registerNo").value = registerNo;
             document.getElementById("grade").value = grade;
 
-            // Remove the row from the table
+            let nameUpt = rows.cells[0];
+            let regUpt = rows.cells[1];
+            let gradeUpt = rows.cells[2];
+
+            nameUpt.innerHTML = name;
+            regUpt.innerHTML = registerNo;
+            gradeUpt.innerHTML = grade;
+
+            addStudent(name, registerNo, grade);
             studentList.removeChild(row);
             sortTable();
         });
@@ -56,7 +83,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function sortTable() {
         const rows = Array.from(studentList.getElementsByTagName("tr"));
-        rows.shift(); // Remove table header row
+        rows.shift();
 
         rows.sort((a, b) => {
             const nameA = a.cells[0].textContent.trim().toLowerCase();
