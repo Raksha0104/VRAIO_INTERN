@@ -244,19 +244,7 @@ document.addEventListener("DOMContentLoaded", function () {
         });
         studentList.innerHTML = "";
         rows.forEach(row => studentList.appendChild(row));
-
-        updateSortIndicator(columnIndex);
         sortOrder = sortOrder === "asc" ? "desc" : "asc";
         sortColumn = columnIndex;
-    }
-
-    function updateSortIndicator(columnIndex) {
-        tableHeaders.forEach((header, index) => {
-            if (index === columnIndex) {
-                header.classList.add("sorted");
-            } else {
-                header.classList.remove("sorted");
-            }
-        });
     }
 });
