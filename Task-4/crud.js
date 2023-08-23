@@ -57,11 +57,11 @@ document.addEventListener("DOMContentLoaded", function () {
     function addStudent(name, registerNo, grade) {
         const row = document.createElement("tr");
         row.innerHTML = `
-            <td>${name}</td>
-            <td>${registerNo}</td>
-            <td>${grade}</td>
-            <td>
-                <button class="btn btn-warning btn-sm edit">Edit</button>
+            <td class="name-cell">${name}</td>
+            <td class="register-no-cell">${registerNo}</td>
+            <td class="grade-cell">${grade}</td>
+            <td class="action-cell">
+                <button class="btn btn-warning btn-sm edit-btn">Edit</button>
                 <button class="btn btn-danger btn-sm delete">Delete</button>
             </td>
         `;
@@ -72,24 +72,131 @@ document.addEventListener("DOMContentLoaded", function () {
             sortTable();
         });
 
-        const editButton = row.querySelector(".edit");
-        editButton.addEventListener("click", function () {
-            document.getElementById("name").value = name;
-            document.getElementById("registerNo").value = registerNo;
-            document.getElementById("grade").value = grade;
+        // const editButton = row.querySelector(".edit");
+        // editButton.addEventListener("click", function () {
+        //     document.getElementById("name").value = name;
+        //     document.getElementById("registerNo").value = registerNo;
+        //     document.getElementById("grade").value = grade;
 
-            let nameUpt = rows.cells[0];
-            let regUpt = rows.cells[1];
-            let gradeUpt = rows.cells[2];
+        //     let nameUpt = rows.cells[0];
+        //     let regUpt = rows.cells[1];
+        //     let gradeUpt = rows.cells[2];
 
-            nameUpt.innerHTML = name;
-            regUpt.innerHTML = registerNo;
-            gradeUpt.innerHTML = grade;
+        //     nameUpt.innerHTML = name;
+        //     regUpt.innerHTML = registerNo;
+        //     gradeUpt.innerHTML = grade;
 
-            addStudent(name, registerNo, grade);
-            studentList.removeChild(row);
-            sortTable();
+        //     addStudent(name, registerNo, grade);
+        //     studentList.removeChild(row);
+        //     sortTable();
+        // });
+
+        studentList.addEventListener('click', function (event) {
+            const target = event.target;
+    
+            if (target.classList.contains('edit-btn')) {
+                handleEditButtonClick(target);
+            } else if (target.classList.contains('update-btn')) {
+                handleUpdateButtonClick(target);
+            } else if (target.classList.contains('cancel-btn')) {
+                handleCancelButtonClick(target);
+            }
         });
+
+        function handleEditButtonClick(editBtn) {
+            const row = editBtn.closest('tr');
+            const updateBtn = document.createElement('button');
+            updateBtn.classList.add('btn', 'btn-sm','btn-warning', 'update-btn');
+            updateBtn.textContent = 'Update';
+    
+            const cancelBtn = document.createElement('button');
+            cancelBtn.classList.add('btn', 'btn-sm' ,'btn-primary', 'cancel-btn');
+            cancelBtn.textContent = 'Cancel';
+    
+            const actionCell = row.querySelector('.action-cell');
+            actionCell.innerHTML = '';
+            actionCell.appendChild(updateBtn);
+            actionCell.appendChild(cancelBtn);
+    
+            const nameCell = row.querySelector('.name-cell');
+            const registerNoCell = row.querySelector('.register-no-cell');
+            const gradeCell = row.querySelector('.grade-cell');
+    
+            const nameValue = nameCell.textContent;
+            const registerNoValue = registerNoCell.textContent;
+            const gradeValue = gradeCell.textContent;
+    
+            nameCell.innerHTML = `<input type="text" class="form-control" value="${nameValue}">`;
+            registerNoCell.innerHTML = `<input type="text" class="form-control" value="${registerNoValue}">`;
+            gradeCell.innerHTML = `<input type="text" class="form-control" value="${gradeValue}">`;
+
+    }
+
+    function handleUpdateButtonClick(updateBtn) {
+        const row = updateBtn.closest('tr');
+        const nameInput = row.querySelector('.name-cell input');
+        const registerNoInput = row.querySelector('.register-no-cell input');
+        const gradeInput = row.querySelector('.grade-cell input');
+
+        const nameValue = nameInput.value;
+        const registerNoValue = registerNoInput.value;
+        const gradeValue = gradeInput.value;
+
+        const nameCell = row.querySelector('.name-cell');
+        const registerNoCell = row.querySelector('.register-no-cell');
+        const gradeCell = row.querySelector('.grade-cell');
+        const actionCell = row.querySelector('.action-cell');
+
+        nameCell.textContent = nameValue;
+        registerNoCell.textContent = registerNoValue;
+        gradeCell.textContent = gradeValue;
+
+        actionCell.innerHTML = '';
+        const editBtn = document.createElement('button');
+        editBtn.classList.add('btn','btn-sm', 'btn-warning', 'edit-btn');
+        editBtn.textContent = 'Edit';
+        actionCell.appendChild(editBtn);
+
+        actionCell.appendChild(document.createTextNode(' '));
+
+        const deleteBtn = document.createElement('button');
+        deleteBtn.classList.add('btn', 'btn-sm', 'btn-danger', 'delete-btn');
+        deleteBtn.textContent = 'Delete';
+        actionCell.appendChild(deleteBtn);
+    }
+
+    function handleCancelButtonClick(cancelBtn) {
+        const row = cancelBtn.closest('tr');
+        const nameInput = row.querySelector('.name-cell input');
+        const registerNoInput = row.querySelector('.register-no-cell input');
+        const gradeInput = row.querySelector('.grade-cell input');
+
+        const nameValue = nameInput.getAttribute('value');
+        const registerNoValue = registerNoInput.getAttribute('value');
+        const gradeValue = gradeInput.getAttribute('value');
+
+        const nameCell = row.querySelector('.name-cell');
+        const registerNoCell = row.querySelector('.register-no-cell');
+        const gradeCell = row.querySelector('.grade-cell');
+        const actionCell = row.querySelector('.action-cell');
+
+        nameCell.textContent = nameValue;
+        registerNoCell.textContent = registerNoValue;
+        gradeCell.textContent = gradeValue;
+
+        actionCell.innerHTML = '';
+        const editBtn = document.createElement('button');
+        editBtn.classList.add('btn','btn-sm' ,'btn-warning', 'edit-btn');
+        editBtn.textContent = 'Edit';
+        actionCell.appendChild(editBtn);
+
+        actionCell.appendChild(document.createTextNode(' '));
+
+        const deleteBtn = document.createElement('button');
+        deleteBtn.classList.add('btn', 'btn-sm', 'btn-danger', 'delete-btn');
+        deleteBtn.textContent = 'Delete';
+        actionCell.appendChild(deleteBtn);
+    }
 
         studentList.appendChild(row);
         sortTable();
