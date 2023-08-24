@@ -56,36 +56,34 @@ document.addEventListener("DOMContentLoaded", function () {
         gradeIsValid
       ) {
         addStudent(nameInput, registerNoInput, gradeInput);
-        document.getElementById("name").classList.remove("is-invalid");
-        document.getElementById("errorMessageName").innerText = "";
-        document.getElementById("registerNo").classList.remove("is-invalid");
-        document.getElementById("errorMessageRegNo").innerText = "";
-        document.getElementById("grade").classList.remove("is-invalid");
-        document.getElementById("errorMessageGrade").innerText = "";
       }
-    } else {
-      if (nameInput === "") {
-        document.getElementById("name").classList.add("is-invalid");
-        document.getElementById("errorMessageName").innerText = "Enter name";
-        document.getElementById("errorMessageName").focus();
-      }
+    }
 
-      if (registerNoInput === "") {
-        document.getElementById("registerNo").classList.add("is-invalid");
-        document.getElementById("errorMessageRegNo").innerText = "Enter name";
-        document.getElementById("errorMessageRegNo").focus();
-      }
+    if (nameInput === "") {
+      document.getElementById("name").classList.add("is-invalid");
+      document.getElementById("errorMessageName").innerText = "Enter name";
+      document.getElementById("errorMessageName").focus();
+    }
 
-      if (gradeInput === "") {
-        document.getElementById("grade").classList.add("is-invalid");
-        document.getElementById("errorMessageGrade").innerText = "Enter Grade";
-        document.getElementById("errorMessageGrade").focus();
-      }
+    if (registerNoInput === "") {
+      document.getElementById("registerNo").classList.add("is-invalid");
+      document.getElementById("errorMessageRegNo").innerText = "Enter name";
+      document.getElementById("errorMessageRegNo").focus();
+    }
+
+    if (gradeInput === "") {
+      document.getElementById("grade").classList.add("is-invalid");
+      document.getElementById("errorMessageGrade").innerText = "Enter Grade";
+      document.getElementById("errorMessageGrade").focus();
     }
   });
 
   studentForm.addEventListener("reset", function (event) {
     event.preventDefault();
+    clearFields();
+  });
+
+  function clearFields() {
     const nameInput = document.getElementById("name");
     const registerNoInput = document.getElementById("registerNo");
     const gradeInput = document.getElementById("grade");
@@ -97,7 +95,7 @@ document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("errorMessageName").innerHTML = "";
     document.getElementById("errorMessageRegNo").innerHTML = "";
     document.getElementById("errorMessageGrade").innerHTML = "";
-  });
+  }
 
   function addStudent(name, registerNo, grade) {
     const row = document.createElement("tr");
@@ -110,6 +108,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 <button class="btn btn-danger btn-sm delete-btn">Delete</button>
             </td>
         `;
+
+        clearFields();
 
     const deleteButton = row.querySelector(".delete-btn");
     deleteButton.addEventListener("click", function () {
@@ -275,6 +275,12 @@ document.addEventListener("DOMContentLoaded", function () {
   function sortTable(columnIndex) {
     const rows = Array.from(studentList.getElementsByTagName("tr"));
 
+    const arrow = sortOrder === "asc" ? "&#9650;" : "&#9660;";
+    tableHeaders[columnIndex].querySelector(".arrow-icon").innerHTML = arrow;
+    tableHeaders[columnIndex]
+      .querySelector(".arrow-icon")
+      .classList.add("rotate");
+
     rows.sort((a, b) => {
       const valueA = a
         .getElementsByTagName("td")
@@ -296,3 +302,11 @@ document.addEventListener("DOMContentLoaded", function () {
     sortColumn = columnIndex;
   }
 });
+
+// $(".bi-arrow-up").click(function (){
+//   $(this).toggleClass('rotate(180deg');
+// });
+
+// $(".bi-arrow-up").click(function (){
+//   $(this).toggleClass('rotate(0deg');
+// });
