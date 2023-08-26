@@ -12,12 +12,12 @@
 
 </head>
 
-<body style="color: black; background-color: wheat;">
+<body style="color: black; background-color: wheat;" class="justify-content-center align-items-center">
     <div class="container mt-5">
         <div class="text-center">
             <h1 class="display-5 mb-5"><strong>CRUD Application</strong></h1>
         </div>
-        <div class="main row justify-content-center">
+        <div class="row justify-content-center">
             <form action="" id="student-form" class="row justify-content-center mb-4">
                 <div class="col-10 mb-4">
                     <input type="text" class="form-control" id="name" placeholder="Name" name="u_name">
@@ -36,14 +36,29 @@
                     <input class="btn btn-primary add-btn" type="reset" value="Clear">
                 </div>
             </form>
-            <div class="col-12 mt-5">
+
+            <div class="col-12 mt-5 py-5">
+                <div class="row">
+                    <div class="container d-flex px-0 justify-content-between">
+                        <div class="col-lg-10 col-md-0 col-sm-0 mb-2 px-2">
+                            <h4> Student Record</h4>
+                        </div>
+                        <div class="col-lg-10 col-md-0 col-sm-0">
+                            <input type="text" class="text-center" placeholder="search" id="myInput"
+                                style="width: 170px;" onkeyup="searchFunc();">
+                        </div>
+                    </div>
+                </div>
+                <div id="noRecordsAlert" class="alert alert-warning" style="display: none;">
+                    No records found.
+                </div>
                 <table class="table table-sortable table-striped table-bordered text-center" id="table">
                     <thead>
                         <tr>
                             <th scope="col">Name
                                 <span class="arrow-icon rotate"></span>
                             </th>
-                            <th scope="col">Register Number 
+                            <th scope="col">Register Number
                                 <span class="arrow-icon rotate"></span>
                             </th>
                             <th scope="col">Grade
@@ -61,6 +76,8 @@
                                 <a href="" class="btn btn-warning btn-sm edit">Edit</a>
                                 <a href="" class="btn btn-danger btn-sm delete">Delete</a>
                             </td>
+
+                            Add student data dynamically using javascript
                         </tr> -->
                     </tbody>
                 </table>
@@ -68,6 +85,58 @@
         </div>
     </div>
     <script src="crud.js"></script>
+    <script>
+        //function to search and filter the data present in the table
+        function searchFunc() {
+            const input = document.getElementById("myInput");
+            const filter = input.value.toUpperCase();
+            const table = document.getElementById("table");
+            const rows = table.getElementsByTagName("tr");
+            let foundRecords = false;
+
+            for (let i = 1; i < rows.length; i++) {
+                const row = rows[i];
+                const cols = row.getElementsByTagName("td");
+                let shouldShow = false;
+
+                for (let j = 0; j < cols.length; j++) {
+                    const col = cols[j];
+                    if (col) {
+                        const text = col.textContent || col.innerText;
+                        if (text.toUpperCase().indexOf(filter) > -1) {
+                            shouldShow = true;
+                            recordsFound = true;
+                            break;
+                        }
+                    }
+                }
+                function messageDisplay() {
+                    const message = document.createElement('div');
+                    message.classList.add("alert", "alert-danger");
+                    message.textContent = "No Record Found";
+                    message.appendChild(row);
+                }
+
+                if (shouldShow) {
+                    row.style.display = "";
+                } else {
+                    row.style.display = messageDisplay();
+                }
+            }
+            // Show alert message if no records are found
+            if (!foundRecords) {
+                const noRecordsAlert = document.getElementById("noRecordsAlert");
+                if (noRecordsAlert) {
+                    noRecordsAlert.style.display = "block";
+                }
+            } else {
+                const noRecordsAlert = document.getElementById("noRecordsAlert");
+                if (noRecordsAlert) {
+                    noRecordsAlert.style.display = "none";
+                }
+            }
+        }
+    </script>
 </body>
 
 </html>

@@ -1,16 +1,19 @@
 document.addEventListener("DOMContentLoaded", function () {
+  //Create variable-name and assign the form and list on which the operations are to be performed.
   const studentForm = document.getElementById("student-form");
-  // const studentList = document.querySelector(".student-list");
+  const studentList = document.querySelector(".student-list");
 
+  //Operations to be performed onClick of Submit button.
   studentForm.addEventListener("submit", function (event) {
     event.preventDefault();
     const nameInput = document.getElementById("name").value;
     const registerNoInput = document.getElementById("registerNo").value;
     const gradeInput = document.getElementById("grade").value;
 
-    const nameRegex = /^[a-zA-Z]+$/;
-    const registerNoRegex = /^(?=.*[a-zA-Z])(?=.*[0-9])[A-Za-z0-9]+$/;
-    const gradeRegex = /^\d$/;
+    //Validate the form for the following conditions.
+    const nameRegex = /^[a-zA-Z]+$/; //Consists only characters.
+    const registerNoRegex = /^(?=.*[a-zA-Z])(?=.*[0-9])[A-Za-z0-9]+$/; //Consists AlphaNumeric Values.
+    const gradeRegex = /^[a-zA-Z]+$/; //Consists only character.
 
     if (nameInput && registerNoInput && gradeInput) {
       const nameIsValid = nameRegex.test(nameInput);
@@ -46,7 +49,7 @@ document.addEventListener("DOMContentLoaded", function () {
         document.getElementById("grade").classList.remove("is-invalid");
         document.getElementById("errorMessageGrade").innerText = "";
       }
-
+      //Add student data if validation is succesful.
       if (
         nameInput &&
         registerNoInput &&
@@ -58,7 +61,7 @@ document.addEventListener("DOMContentLoaded", function () {
         addStudent(nameInput, registerNoInput, gradeInput);
       }
     }
-
+    //Check for empty fields.
     if (nameInput === "") {
       document.getElementById("name").classList.add("is-invalid");
       document.getElementById("errorMessageName").innerText = "Enter name";
@@ -78,11 +81,13 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
+  //Operation to be performed onClick for Clear button.
   studentForm.addEventListener("reset", function (event) {
     event.preventDefault();
     clearFields();
   });
 
+  //Operations to be performed to clear the error messages and empty the fields.
   function clearFields() {
     const nameInput = document.getElementById("name");
     const registerNoInput = document.getElementById("registerNo");
@@ -97,6 +102,8 @@ document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("errorMessageGrade").innerHTML = "";
   }
 
+  //Function to add student data in the table dynamically.
+
   function addStudent(name, registerNo, grade) {
     const row = document.createElement("tr");
     row.innerHTML = `
@@ -109,33 +116,14 @@ document.addEventListener("DOMContentLoaded", function () {
             </td>
         `;
 
-        clearFields();
-
+    clearFields();
+    //Remove the field/row containing data onClick of delete button.
     const deleteButton = row.querySelector(".delete-btn");
     deleteButton.addEventListener("click", function () {
       studentList.removeChild(row);
       sortTable();
     });
-
-    // const editButton = row.querySelector(".edit");
-    // editButton.addEventListener("click", function () {
-    //     document.getElementById("name").value = name;
-    //     document.getElementById("registerNo").value = registerNo;
-    //     document.getElementById("grade").value = grade;
-
-    //     let nameUpt = rows.cells[0];
-    //     let regUpt = rows.cells[1];
-    //     let gradeUpt = rows.cells[2];
-
-    //     nameUpt.innerHTML = name;
-    //     regUpt.innerHTML = registerNo;
-    //     gradeUpt.innerHTML = grade;
-
-    //     addStudent(name, registerNo, grade);
-    //     studentList.removeChild(row);
-    //     sortTable();
-    // });
-
+    //To edit the data in the table:
     studentList.addEventListener("click", function (event) {
       const target = event.target;
 
@@ -147,7 +135,7 @@ document.addEventListener("DOMContentLoaded", function () {
         handleCancelButtonClick(target);
       }
     });
-
+    //Replace the edit button with update and cancel buuton to edit the data in the table.
     function handleEditButtonClick(editBtn) {
       const row = editBtn.closest("tr");
       const updateBtn = document.createElement("button");
@@ -175,7 +163,7 @@ document.addEventListener("DOMContentLoaded", function () {
       registerNoCell.innerHTML = `<input type="text" class="form-control" value="${registerNoValue}">`;
       gradeCell.innerHTML = `<input type="text" class="form-control" value="${gradeValue}">`;
     }
-
+    // Update the data and replace the button back with edit and delete buttons
     function handleUpdateButtonClick(updateBtn) {
       const row = updateBtn.closest("tr");
       const nameInput = row.querySelector(".name-cell input");
@@ -208,7 +196,7 @@ document.addEventListener("DOMContentLoaded", function () {
       deleteBtn.textContent = "Delete";
       actionCell.appendChild(deleteBtn);
     }
-
+    // Do not make changes and get back to the original data.
     function handleCancelButtonClick(cancelBtn) {
       const row = cancelBtn.closest("tr");
       const nameInput = row.querySelector(".name-cell input");
@@ -246,32 +234,16 @@ document.addEventListener("DOMContentLoaded", function () {
     sortTable();
   }
 
-  // function sortTable() {
-  //     const rows = Array.from(studentList.getElementsByTagName("tr"));
-  //     rows.shift();
-
-  //     rows.sort((a, b) => {
-  //         const nameA = a.cells[0].textContent.trim().toLowerCase();
-  //         const nameB = b.cells[0].textContent.trim().toLowerCase();
-  //         return nameA.localeCompare(nameB);
-  //     });
-
-  //     for (const row of rows) {
-  //         studentList.appendChild(row);
-  //     }
-  // }
-
   const tableHeaders = document.querySelectorAll(".table th");
-  const studentList = document.querySelector(".student-list");
   let sortColumn = null;
   let sortOrder = "asc";
-
+  // Add click function on the table headers and sort the table accordingly.
   tableHeaders.forEach((header, index) => {
     header.addEventListener("click", function () {
       sortTable(index);
     });
   });
-
+  // Sorting of table based on characters and numbers in ascending and descending order.
   function sortTable(columnIndex) {
     const rows = Array.from(studentList.getElementsByTagName("tr"));
 
@@ -302,11 +274,3 @@ document.addEventListener("DOMContentLoaded", function () {
     sortColumn = columnIndex;
   }
 });
-
-// $(".bi-arrow-up").click(function (){
-//   $(this).toggleClass('rotate(180deg');
-// });
-
-// $(".bi-arrow-up").click(function (){
-//   $(this).toggleClass('rotate(0deg');
-// });
