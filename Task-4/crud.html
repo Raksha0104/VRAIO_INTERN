@@ -110,20 +110,12 @@
                         }
                     }
                 }
-                function messageDisplay() {
-                    const message = document.createElement('div');
-                    message.classList.add("alert", "alert-danger");
-                    message.textContent = "No Record Found";
-                    message.appendChild(row);
-                }
-
                 if (shouldShow) {
                     row.style.display = "";
                 } else {
-                    row.style.display = messageDisplay();
+                    row.style.display = "none";
                 }
             }
-            // Show alert message if no records are found
             if (!foundRecords) {
                 const noRecordsAlert = document.getElementById("noRecordsAlert");
                 if (noRecordsAlert) {
