@@ -49,9 +49,6 @@
                         </div>
                     </div>
                 </div>
-                <div id="noRecordsAlert" class="alert alert-warning" style="display: none;">
-                    No records found.
-                </div>
                 <table class="table table-sortable table-striped table-bordered text-center" id="table">
                     <thead>
                         <tr>
@@ -79,6 +76,9 @@
 
                             Add student data dynamically using javascript
                         </tr> -->
+                        <tr id="noRecordsRow" style="display: none;">
+                            <td colspan="4" class="text-danger">No records found.</td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
@@ -105,7 +105,7 @@
                         const text = col.textContent || col.innerText;
                         if (text.toUpperCase().indexOf(filter) > -1) {
                             shouldShow = true;
-                            recordsFound = true;
+                            foundRecords = true;
                             break;
                         }
                     }
@@ -116,16 +116,9 @@
                     row.style.display = "none";
                 }
             }
-            if (!foundRecords) {
-                const noRecordsAlert = document.getElementById("noRecordsAlert");
-                if (noRecordsAlert) {
-                    noRecordsAlert.style.display = "block";
-                }
-            } else {
-                const noRecordsAlert = document.getElementById("noRecordsAlert");
-                if (noRecordsAlert) {
-                    noRecordsAlert.style.display = "none";
-                }
+            const noRecordsRow = document.getElementById("noRecordsRow");
+            if (noRecordsRow) {
+                noRecordsRow.style.display = foundRecords ? "none" : "table-row"
             }
         }
     </script>
