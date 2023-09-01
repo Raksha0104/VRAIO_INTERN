@@ -1,218 +1,72 @@
 import React from "react";
+import Card from "./Card";
 
 export default function Body() {
+  const condition = "This is my first react app";
+  const cardData = [
+    {
+      imageUrl: "",
+      description: "This is a wider card with supporting text below as a natural lead-in to additional content.This content is a little bit longer.",
+      time: "9mins",
+    },
+    {
+      imageUrl: "",
+      description: "This is a wider card with supporting text below as a natural lead-in to additional content.This content is a little bit longer.",
+      time: "10mins",
+    },
+    {
+      imageUrl: "",
+      description: "This is a wider card with supporting text below as a natural lead-in to additional content.This content is a little bit longer.",
+      time: "11mins",
+    },
+    {
+      imageUrl: "",
+      description: "This is a wider card with supporting text below as a natural lead-in to additional content.This content is a little bit longer.",
+      time: "12mins",
+    },
+    {
+      imageUrl: "",
+      description: "This is a wider card with supporting text below as a natural lead-in to additional content.This content is a little bit longer.",
+      time: "13mins",
+    },
+    {
+      imageUrl: "",
+      description: "This is a wider card with supporting text below as a natural lead-in to additional content.This content is a little bit longer.",
+      time: "14mins",
+    },
+    {
+      imageUrl: "",
+      description: "This is a wider card with supporting text below as a natural lead-in to additional content.This content is a little bit longer.",
+      time: "15mins",
+    },
+    {
+      imageUrl: "",
+      description: "This is a wider card with supporting text below as a natural lead-in to additional content.This content is a little bit longer.",
+      time: "16mins",
+    },
+    {
+      imageUrl: "",
+      description: "This is a wider card with supporting text below as a natural lead-in to additional content.This content is a little bit longer.",
+      time: "17mins",
+    }
+  ];
   return (
     <div className="container">
       <div className="row">
-        {/* Repeat this block for each card */}
-        <div className="col-lg-4 col-md-4 col-sm-12">
-          <div className="card ">
-            <img src="/images/Thumbnail.jpg" alt="Thumbnail" />
-            <div className="card-body">
-              <p className="card-text">
-                This is a wider card with supporting text below as a natural
-                lead-in to additional content. This content is a little bit
-                longer.
-              </p>
-              <div className="d-flex justify-content-between align-items-center">
-                <div className="btn-group">
-                  <button className="btn btn-sm btn-outline-secondary">
-                    View
-                  </button>
-                  <button className="btn btn-sm btn-outline-secondary">
-                    Edit
-                  </button>
-                </div>
-                <small className="text-muted">9 mins</small>
-              </div>
-            </div>
-          </div>
-        </div>
-        {/* End of repeated block */}
-        <div className="col-lg-4 col-md-4 col-sm-12">
-          <div className="card">
-            <img src="/images/Thumbnail.jpg" alt="Thumbnail" />
-            <div className="card-body">
-              <p className="card-text">
-                This is a wider card with supporting text below as a natural
-                lead-in to additional content. This content is a little bit
-                longer.
-              </p>
-              <div className="d-flex justify-content-between align-items-center">
-                <div className="btn-group">
-                  <button className="btn btn-sm btn-outline-secondary">
-                    View
-                  </button>
-                  <button className="btn btn-sm btn-outline-secondary">
-                    Edit
-                  </button>
-                </div>
-                <small className="text-muted">9 mins</small>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="col-lg-4 col-md-4 col-sm-12">
-          <div className="card">
-            <img src="/images/Thumbnail.jpg" alt="Thumbnail" />
-            <div className="card-body">
-              <p className="card-text">
-                This is a wider card with supporting text below as a natural
-                lead-in to additional content. This content is a little bit
-                longer.
-              </p>
-              <div className="d-flex justify-content-between align-items-center">
-                <div className="btn-group">
-                  <button className="btn btn-sm btn-outline-secondary">
-                    View
-                  </button>
-                  <button className="btn btn-sm btn-outline-secondary">
-                    Edit
-                  </button>
-                </div>
-                <small className="text-muted">9 mins</small>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="col-lg-4 col-md-4 col-sm-12">
-          <div className="card">
-            <img src="/images/Thumbnail.jpg" alt="Thumbnail" />
-            <div className="card-body">
-              <p className="card-text">
-                This is a wider card with supporting text below as a natural
-                lead-in to additional content. This content is a little bit
-                longer.
-              </p>
-              <div className="d-flex justify-content-between align-items-center">
-                <div className="btn-group">
-                  <button className="btn btn-sm btn-outline-secondary">
-                    View
-                  </button>
-                  <button className="btn btn-sm btn-outline-secondary">
-                    Edit
-                  </button>
-                </div>
-                <small className="text-muted">9 mins</small>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="col-lg-4 col-md-4 col-sm-12">
-          <div className="card">
-            <img src="/images/Thumbnail.jpg" alt="Thumbnail" />
-            <div className="card-body">
-              <p className="card-text">
-                This is a wider card with supporting text below as a natural
-                lead-in to additional content. This content is a little bit
-                longer.
-              </p>
-              <div className="d-flex justify-content-between align-items-center">
-                <div className="btn-group">
-                  <button className="btn btn-sm btn-outline-secondary">
-                    View
-                  </button>
-                  <button className="btn btn-sm btn-outline-secondary">
-                    Edit
-                  </button>
-                </div>
-                <small className="text-muted">9 mins</small>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="col-lg-4 col-md-4 col-sm-12">
-          <div className="card">
-            <img src="/images/Thumbnail.jpg" alt="Thumbnail" />
-            <div className="card-body">
-              <p className="card-text">
-                This is a wider card with supporting text below as a natural
-                lead-in to additional content. This content is a little bit
-                longer.
-              </p>
-              <div className="d-flex justify-content-between align-items-center">
-                <div className="btn-group">
-                  <button className="btn btn-sm btn-outline-secondary">
-                    View
-                  </button>
-                  <button className="btn btn-sm btn-outline-secondary">
-                    Edit
-                  </button>
-                </div>
-                <small className="text-muted">9 mins</small>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="col-lg-4 col-md-4 col-sm-12">
-          <div className="card">
-            <img src="/images/Thumbnail.jpg" alt="Thumbnail" />
-            <div className="card-body">
-              <p className="card-text">
-                This is a wider card with supporting text below as a natural
-                lead-in to additional content. This content is a little bit
-                longer.
-              </p>
-              <div className="d-flex justify-content-between align-items-center">
-                <div className="btn-group">
-                  <button className="btn btn-sm btn-outline-secondary">
-                    View
-                  </button>
-                  <button className="btn btn-sm btn-outline-secondary">
-                    Edit
-                  </button>
-                </div>
-                <small className="text-muted">9 mins</small>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="col-lg-4 col-md-4 col-sm-12">
-          <div className="card">
-            <img src="/images/Thumbnail.jpg" alt="Thumbnail" />
-            <div className="card-body">
-              <p className="card-text">
-                This is a wider card with supporting text below as a natural
-                lead-in to additional content. This content is a little bit
-                longer.
-              </p>
-              <div className="d-flex justify-content-between align-items-center">
-                <div className="btn-group">
-                  <button className="btn btn-sm btn-outline-secondary">
-                    View
-                  </button>
-                  <button className="btn btn-sm btn-outline-secondary">
-                    Edit
-                  </button>
-                </div>
-                <small className="text-muted">9 mins</small>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="col-lg-4 col-md-4 col-sm-12">
-          <div className="card">
-            <img src="/images/Thumbnail.jpg" alt="Thumbnail" />
-            <div className="card-body">
-              <p className="card-text">
-                This is a wider card with supporting text below as a natural
-                lead-in to additional content. This content is a little bit
-                longer.
-              </p>
-              <div className="d-flex justify-content-between align-items-center">
-                <div className="btn-group">
-                  <button className="btn btn-sm btn-outline-secondary">
-                    View
-                  </button>
-                  <button className="btn btn-sm btn-outline-secondary">
-                    Edit
-                  </button>
-                </div>
-                <small className="text-muted">9 mins</small>
-              </div>
-            </div>
-          </div>
-        </div>
+  
+        {/* {condition == "This is my first react app" ? "dfghj" :"This is test"} */}
+        {/* {condition == "This is my first react app" && "dfghj" } */}
+        {cardData.map((data, index) => {
+          return (
+            
+            <Card
+              // key={index}
+              imageUrl={data.imageUrl}
+              description={data.description}
+              time={data.time}
+            />
+          );
+        })}
       </div>
     </div>
   );

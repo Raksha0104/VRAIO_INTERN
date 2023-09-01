@@ -2,7 +2,7 @@ import React from "react";
 
 export default function Footer() {
   return (
-    <div>
+    <div className="text-center mt-3 py-3">
       <p>
         Album example is © Bootstrap, but please download and customize it for
         yourself!

@@ -1,23 +1,17 @@
 import React from "react";
+import MainAction from "./MainAction";
+import SecondaryAction from "./SecondaryAction";
 
-export default function Header() {
+export default function Header(props) {
   return (
     <section className="jumbotron">
-      <div>
-        <h1>Album example</h1>
+      <div className="text-center my-5">
+        <h1>{props.title}</h1>
         <p>
-          Something short and leading about the collection below—its contents,
-          the creator, etc. Make it short and sweet, but not too short so folks
-          don't simply skip over it entirely.
+          {props.description}
         </p>
-        <p>
-          <a href="#" className="btn btn-primary">
-            Main call to action
-          </a>
-          <a href="#" className="btn btn-secondary">
-            Secondary action
-          </a>
-        </p>
+        <MainAction />
+        <SecondaryAction />
       </div>
     </section>
   );
