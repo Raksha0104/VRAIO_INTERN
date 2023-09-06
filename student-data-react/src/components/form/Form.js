@@ -89,6 +89,18 @@ export default function Form() {
     setGradeError("");
   };
 
+  const updateUserData = (index, updatedData) => {
+    const updatedUsers = [...users];
+    updatedUsers[index] = updatedData;
+    setUsers(updatedUsers);
+  };
+
+  const deleteUserData = (index) => {
+    const updatedUsers = [...users];
+    updatedUsers.splice(index, 1);
+    setUsers(updatedUsers);
+  };
+
   return (
     <>
       <div className="row justify-content-center">
@@ -128,7 +140,11 @@ export default function Form() {
           </form>
         </div>
       </div>
-      <Table users={users} />
+      <Table
+        users={users}
+        onUpdate={updateUserData}
+        onDelete={deleteUserData}
+      />
     </>
   );
 }
