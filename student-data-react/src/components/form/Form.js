@@ -35,7 +35,8 @@ export default function Form() {
   };
 
   const handleGrade = (e) => {
-    setGrade(e.target.value);const value = e.target.value;
+    setGrade(e.target.value);
+    const value = e.target.value;
     setGrade(value);
     // Validate grade for single character
     if (value.length !== 1 || !/^[a-zA-Z]+$/.test(value)) {
@@ -43,7 +44,7 @@ export default function Form() {
     } else {
       setGradeError("");
     }
-  }
+  };
   const [users, setUsers] = useState([]);
 
   const addUser = (e) => {
@@ -77,6 +78,15 @@ export default function Form() {
     setName("");
     setRegister("");
     setGrade("");
+  };
+
+  const clearFields = () => {
+    setName("");
+    setRegister("");
+    setGrade("");
+    setNameError("");
+    setRegisterNumError("");
+    setGradeError("");
   };
 
   return (
@@ -114,7 +124,7 @@ export default function Form() {
               />
               <div className="text-danger">{gradeError}</div>
             </div>
-            <SubmitClear />
+            <SubmitClear onClear={clearFields} />
           </form>
         </div>
       </div>
