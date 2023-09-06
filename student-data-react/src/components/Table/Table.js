@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 
-export default function Table({ users , onUpdate ,onDelete}) {
+export default function Table({ users, onUpdate, onDelete }) {
   const [editIndex, setEditIndex] = useState(null);
   const [editedData, setEditedData] = useState({
     name: "",
     registerNum: "",
     grade: "",
   });
+
+  const [searchQuery, setSearchQuery] = useState("");
 
   const handleEditClick = (index, user) => {
     setEditIndex(index);
@@ -22,6 +24,15 @@ export default function Table({ users , onUpdate ,onDelete}) {
     setEditIndex(null);
   };
 
+  const filteredUsers = users.filter((user) => {
+    const lowerCaseQuery = searchQuery.toLowerCase();
+    return (
+      user.name.toLowerCase().includes(lowerCaseQuery) ||
+      user.registerNum.toLowerCase().includes(lowerCaseQuery) ||
+      user.grade.toLowerCase().includes(lowerCaseQuery)
+    );
+  });
+
   return (
     <>
       <div className="col-12 mt-5">
@@ -36,7 +47,8 @@ export default function Table({ users , onUpdate ,onDelete}) {
                 class="text-center"
                 placeholder="search"
                 id="myInput"
-                onkeyup="searchFunc();"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
               />
             </div>
           </div>
@@ -65,7 +77,7 @@ export default function Table({ users , onUpdate ,onDelete}) {
         </thead>
         {/* Add data dynamically into the table */}
         <tbody className="student-list">
-          {users.map((user, index) => (
+          {filteredUsers.map((user, index) => (
             <tr key={index}>
               <td>
                 {editIndex === index ? (
@@ -144,9 +156,9 @@ export default function Table({ users , onUpdate ,onDelete}) {
               </td>
             </tr>
           ))}
-          {users.length === 0 && (
+          {searchQuery && filteredUsers.length === 0 && (
             <tr id="noRecordsRow">
-              <td colspan="4" class="text-danger" style={{ display: "none" }}>
+              <td colSpan="4" className="text-danger">
                 No records found.
               </td>
             </tr>
