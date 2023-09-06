@@ -6,23 +6,61 @@ export default function Form() {
   const [name, setName] = useState("");
   const [registerNum, setRegister] = useState("");
   const [grade, setGrade] = useState("");
+  const [nameError, setNameError] = useState("");
+  const [registerNumError, setRegisterNumError] = useState("");
+  const [gradeError, setGradeError] = useState("");
 
   const handleName = (e) => {
-    setName(e.target.value);
+    const value = e.target.value;
+    setName(value);
+
+    if (!/^[a-zA-Z\s]+$/.test(value)) {
+      setNameError("Name must contain only letters.");
+    } else {
+      setNameError("");
+    }
   };
 
   const handleRegister = (e) => {
-    setRegister(e.target.value);
+    const value = e.target.value;
+    setRegister(value);
+    // Validate registerNum for alphanumeric
+    if (!/^[a-zA-Z0-9]+$/.test(value)) {
+      setRegisterNumError(
+        "Register Number must contain only letters and numbers."
+      );
+    } else {
+      setRegisterNumError("");
+    }
   };
 
   const handleGrade = (e) => {
-    setGrade(e.target.value);
-  };
-
+    setGrade(e.target.value);const value = e.target.value;
+    setGrade(value);
+    // Validate grade for single character
+    if (value.length !== 1 || !/^[a-zA-Z]+$/.test(value)) {
+      setGradeError("Grade must be a single letter.");
+    } else {
+      setGradeError("");
+    }
+  }
   const [users, setUsers] = useState([]);
 
   const addUser = (e) => {
     e.preventDefault();
+
+    if (!name || !registerNum || !grade) {
+      if (!name) {
+        setNameError("Name is required.");
+      }
+      if (!registerNum) {
+        setRegisterNumError("Register Number is required.");
+      }
+      if (!grade) {
+        setGradeError("Grade is required.");
+      }
+      return;
+    }
 
     const newUser = {
       // userName: name,
@@ -36,11 +74,10 @@ export default function Form() {
     };
     setUsers([...users, newUser]);
 
-    setName("")
-    setRegister("")
-    setGrade("")
+    setName("");
+    setRegister("");
+    setGrade("");
   };
-  
 
   return (
     <>
@@ -55,6 +92,7 @@ export default function Form() {
                 type="text"
                 placeholder="Name"
               />
+              <div className="text-danger">{nameError}</div>
             </div>
             <div className="form-group">
               <input
@@ -64,6 +102,7 @@ export default function Form() {
                 type="text"
                 placeholder="Register Number"
               />
+              <div className="text-danger">{registerNumError}</div>
             </div>
             <div className="form-group">
               <input
@@ -73,6 +112,7 @@ export default function Form() {
                 type="text"
                 placeholder="Grade"
               />
+              <div className="text-danger">{gradeError}</div>
             </div>
             <SubmitClear />
           </form>
