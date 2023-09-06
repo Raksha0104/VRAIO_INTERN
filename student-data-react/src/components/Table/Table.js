@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "./Table.module.css"
 
 export default function Table({ users, onUpdate, onDelete }) {
   const [editIndex, setEditIndex] = useState(null);
@@ -9,6 +10,8 @@ export default function Table({ users, onUpdate, onDelete }) {
   });
 
   const [searchQuery, setSearchQuery] = useState("");
+  const [sortColumn, setSortColumn] = useState(null);
+  const [sortDirection, setSortDirection] = useState("asc");
 
   const handleEditClick = (index, user) => {
     setEditIndex(index);
@@ -24,7 +27,38 @@ export default function Table({ users, onUpdate, onDelete }) {
     setEditIndex(null);
   };
 
-  const filteredUsers = users.filter((user) => {
+  const handleHeaderClick = (column) => {
+    if (sortColumn === column) {
+      // Toggle sort direction if the same column is clicked again
+      setSortDirection(sortDirection === "asc" ? "desc" : "asc");
+    } else {
+      // Set a new column to sort
+      setSortColumn(column);
+      setSortDirection("asc");
+    }
+  };
+
+  const sortedUsers = [...users].sort((a, b) => {
+    if (sortColumn) {
+      if (sortDirection === "asc") {
+        return a[sortColumn].localeCompare(b[sortColumn]);
+      } else {
+        return b[sortColumn].localeCompare(a[sortColumn]);
+      }
+    }
+    return 0;
+  });
+
+  const arrowIconStyle = {
+    display: "inline-block",
+    width: "10px",
+    height: "10px",
+    marginLeft: "5px",
+    transition: "transform 0.3s ease",
+    transform: sortDirection === "asc" ? "rotate(0deg)" : "rotate(180deg)",
+  };
+
+  const filteredUsers = sortedUsers.filter((user) => {
     const lowerCaseQuery = searchQuery.toLowerCase();
     return (
       user.name.toLowerCase().includes(lowerCaseQuery) ||
@@ -60,17 +94,17 @@ export default function Table({ users, onUpdate, onDelete }) {
       >
         <thead>
           <tr>
-            <th scope="col">
+            <th scope="col" onClick={() => handleHeaderClick("name")}>
               Name
-              <span class="arrow-icon rotate"></span>
+              <span style={arrowIconStyle}>&uarr;</span>
             </th>
-            <th scope="col">
+            <th scope="col" onClick={() => handleHeaderClick("registerNum")}>
               Register Number
-              <span class="arrow-icon rotate"></span>
+              <span style={arrowIconStyle}>&uarr;</span>
             </th>
-            <th scope="col">
+            <th scope="col" onClick={() => handleHeaderClick("grade")}>
               Grade
-              <span class="arrow-icon rotate"></span>
+              <span style={arrowIconStyle}>&uarr;</span>
             </th>
             <th scope="col">Action</th>
           </tr>
