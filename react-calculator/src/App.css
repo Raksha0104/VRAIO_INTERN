@@ -5,6 +5,7 @@
 
 body{
   display: flex;
+  background-color: beige;
   justify-content: center;
   align-items: center;
 }
@@ -47,7 +48,7 @@ input[type= "text"]{
 }
 
 #result{
-  grid-column: 3/5;
+  grid-column: 1/5;
   grid-row: 5;
   color: #262834;
 }
