@@ -1,5 +1,16 @@
-.nav-pills li:hover {
-    background-color: #0dcaf0;
-    color: black;
+ .nav-pills li a{
+    text-decoration: none;
+    color: white;
+    padding-left: 15px;
+  }
+  .nav-pills li a:hover {
+    color: black!important;
+  }
+
+  .nav-pills li:hover {
+    background-color: #0dcaf0 !important;
+    color: black!important;
     cursor: pointer;
+    text-decoration: none;
+    border-radius: 15px;
   }
