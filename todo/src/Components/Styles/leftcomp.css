@@ -11,5 +11,5 @@
   .nav-pills li:hover {
     background-color: #0dcaf0 !important;
     cursor: pointer;
-    border-radius: 15px;
+    border-radius: 10px;
   }
