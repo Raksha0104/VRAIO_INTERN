@@ -1,4 +1,5 @@
 import "../Styles/rightcomp.css";
+import RightFooter from "./RightFooter";
 
 export default function RightComp() {
   return (
@@ -20,7 +21,7 @@ export default function RightComp() {
             </div>
           </div>
           <hr className="mt-0" />
-          <div className="d-flex flex-row justify-content-between px-2 mx-2">
+          <div className="d-flex flex-row justify-content-between px-1 mx-2">
             <div>
               <h6>Darkmode</h6>
             </div>
@@ -54,7 +55,11 @@ export default function RightComp() {
             <div className="progress-bar bg-info w-75"></div>
           </div>
           <hr className="my-4" />
+          <div className="mx-3">
+            <h6>No Tasks Today</h6>
+          </div>
         </section>
+        <RightFooter/>
       </div>
     </>
   );
