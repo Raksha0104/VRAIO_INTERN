@@ -21,7 +21,7 @@ export default function LeftComp() {
     <>
       {/* <div className="container-fluid">
         <div className="row flex-nowrap"> */}
-      <div className="bg-dark col-auto col-md-4 col-lg-2 min-vh-100 justify-content-between">
+      <div className="bg-dark col min-vh-100 justify-content-between">
         <div className="bg-dark py-2 ">
           <div className="d-flex mt-4 mx-3 text-white text-decoration-none align-items-center px-2">
             <span className="fs-5 d-none d-sm-inline">TO-DO LIST</span>

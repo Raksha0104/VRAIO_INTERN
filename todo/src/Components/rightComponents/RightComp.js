@@ -1,10 +1,9 @@
 import "../Styles/rightcomp.css";
-import RightFooter from "./RightFooter";
 
 export default function RightComp() {
   return (
     <>
-      <div className="col-auto col-md-4 col-lg-2">
+      <div className="col">
         <section className=" bg-dark text-white min-vh-100">
           <div className="d-flex flex-row justify-content-between p-2">
             <div className="d-flex flex-row">
@@ -59,7 +58,6 @@ export default function RightComp() {
             <h6>No Tasks Today</h6>
           </div>
         </section>
-        <RightFooter/>
       </div>
     </>
   );
