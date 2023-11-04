@@ -1,0 +1,13 @@
+.progress{
+    height: 10px;
+}
+
+.img-thumbnail{
+    width: 40px;
+}
+
+.hr{
+    color: white;
+    width: 300%;
+    size: 10;
+}

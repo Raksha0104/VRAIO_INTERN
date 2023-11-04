@@ -3,8 +3,8 @@ import "../Styles/rightcomp.css";
 export default function RightComp() {
   return (
     <>
-      <div className="col">
-        <section className=" bg-dark text-white min-vh-100">
+      <div className="col-2 ">
+        <section className="bg-primary-subtle text-dark min-vh-100 px-0">
           <div className="d-flex flex-row justify-content-between p-2">
             <div className="d-flex flex-row">
               <div className="item text-center mt-3 mx-3">
@@ -14,7 +14,7 @@ export default function RightComp() {
                 <img
                   src="../user.png"
                   alt="..."
-                  className="img-thumbnail bg-dark"
+                  className="img-thumbnail bg-info"
                 ></img>
               </div>
             </div>
@@ -58,6 +58,9 @@ export default function RightComp() {
             <h6>No Tasks Today</h6>
           </div>
         </section>
+        <footer>
+          
+        </footer>
       </div>
     </>
   );

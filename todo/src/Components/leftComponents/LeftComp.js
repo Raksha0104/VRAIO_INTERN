@@ -8,6 +8,7 @@ import "./UncompletedTasks";
 import CenterComp from "../centerComponents/CenterComp";
 import RightComp from "../rightComponents/RightComp";
 import { Link } from "react-router-dom";
+import "../Styles/leftcomp.css";
 
 export default function LeftComp() {
   const NavLinks = [
@@ -21,15 +22,15 @@ export default function LeftComp() {
     <>
       {/* <div className="container-fluid">
         <div className="row flex-nowrap"> */}
-      <div className="bg-dark col min-vh-100 justify-content-between">
-        <div className="bg-dark py-2 ">
-          <div className="d-flex mt-4 mx-3 text-white text-decoration-none align-items-center px-2">
+      <div className="bg-primary-subtle col-2 min-vh-100 justify-content-between">
+        <div className="bg-primary-subtle py-2 ">
+          <div className="d-flex mt-4 mx-3 text-dark text-decoration-none align-items-center px-2">
             <span className="fs-5 d-none d-sm-inline">TO-DO LIST</span>
           </div>
           <button className="btn btn-sm btn-info my-4 mx-4">
             Add new task
           </button>
-          <ul className="nav nav-pills flex-column mt-1 text-white text-start">
+          <ul className="nav nav-pills flex-column mt-1 text-dark text-start">
             {NavLinks.map((link, index) => (
               <li className="nav-item mt-3" key={index}>
                 <Link to={link.to}>{link.label}</Link>
