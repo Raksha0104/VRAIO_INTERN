@@ -5,8 +5,6 @@ import "./CompletedTasks";
 import "./ImportantTasks";
 import "./TodaysTasks";
 import "./UncompletedTasks";
-import CenterComp from "../centerComponents/CenterComp";
-import RightComp from "../rightComponents/RightComp";
 import { Link } from "react-router-dom";
 import "../Styles/leftcomp.css";
 
@@ -33,7 +31,7 @@ export default function LeftComp() {
           <ul className="nav nav-pills flex-column mt-1 text-dark text-start">
             {NavLinks.map((link, index) => (
               <li className="nav-item mt-3" key={index}>
-                <Link to={link.to}>{link.label}</Link>
+                <Link to={link.to}>{link.label} </Link>
               </li>
             ))}
           </ul>
@@ -41,8 +39,8 @@ export default function LeftComp() {
       </div>
       {/* </div>
       </div> */}
-      <CenterComp />
-      <RightComp />
+      {/* <CenterComp />
+      <RightComp /> */}
     </>
   );
 }
