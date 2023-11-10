@@ -16,10 +16,9 @@ export default function LeftComp() {
     { to: "/CompletedTasks", label: "Completed Tasks" },
     { to: "/UncompletedTasks", label: "Incomplete Tasks" },
   ];
+
   return (
     <>
-      {/* <div className="container-fluid">
-        <div className="row flex-nowrap"> */}
       <div className="bg-primary-subtle col-2 min-vh-100 justify-content-between">
         <div className="bg-primary-subtle py-2 ">
           <div className="d-flex mt-4 mx-3 text-dark text-decoration-none align-items-center px-2">
@@ -37,10 +36,6 @@ export default function LeftComp() {
           </ul>
         </div>
       </div>
-      {/* </div>
-      </div> */}
-      {/* <CenterComp />
-      <RightComp /> */}
     </>
   );
 }
