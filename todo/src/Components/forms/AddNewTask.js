@@ -1,16 +1,6 @@
 import React, { useState } from "react";
 
 export default function AddNewTask() {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const openModal = () => {
-    setIsModalOpen(true);
-  };
-
-  const closeModal = () => {
-    setIsModalOpen(false);
-  };
-
   return (
     <>
       <div
